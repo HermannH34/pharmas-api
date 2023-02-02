@@ -1,5 +1,6 @@
 import fastify from "fastify"
 import { listPharms } from './actions/pharmacies.js'
+import { listByCity } from './actions/pharmacies.js'
 import { listLabs } from './actions/laboratories.js'
 
 const app = fastify()
@@ -9,6 +10,8 @@ app.get('/laboratories', listLabs)
 
 // afficher toutes les pharmas
 app.get('/pharmacies', listPharms)
+// afficher les pharmas par ville
+app.get('/pharmacies/:city', listByCity)
 
 // afficher toutes les pharmas
 // app.get('/pharmacies/', listPharms)
