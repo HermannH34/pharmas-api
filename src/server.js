@@ -10,6 +10,9 @@ app.get('/laboratories', listLabs)
 // afficher toutes les pharmas
 app.get('/pharmacies', listPharms)
 
+// afficher toutes les pharmas
+// app.get('/pharmacies/', listPharms)
+
 const start = async () => {
   try {
     await app.listen({ port: 3000 })
