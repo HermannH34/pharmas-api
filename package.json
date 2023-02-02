@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/HermannH34/pharmas-api/issues"
   },
-  "homepage": "https://github.com/HermannH34/pharmas-api#readme"
+  "homepage": "https://github.com/HermannH34/pharmas-api#readme",
+  "dependencies": {
+    "better-sqlite3": "^8.0.1",
+    "fastify": "^4.12.0",
+    "nodemon": "^2.0.20"
+  }
 }
