@@ -2,10 +2,21 @@ import fastify from "fastify"
 import { listPharms } from './actions/pharmacies.js'
 import { listByCity } from './actions/pharmacies.js'
 import { listLabs } from './actions/laboratories.js'
+import fastifyView from "@fastify/view"
+import ejs from 'ejs'
 
-// let PORT = process.env.PORT || 3000;
 const app = fastify()
 
+app.register(fastifyView, {
+  engine: {
+    ejs
+  },
+});
+
+// index
+app.get('/', (req, res) => {
+  res.view("templates/index.ejs")
+})
 // afficher tous les labos
 app.get('/laboratories', listLabs)
 
