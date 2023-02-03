@@ -16,7 +16,9 @@ app.get('/pharmacies/:city', listByCity)
 
 const start = async () => {
   try {
-    await app.listen(PORT)
+    await app.listen(PORT, function () {
+      console.log("ok server")
+    })
   } catch (err) {
     console.error(err)
     process.exit(1)
