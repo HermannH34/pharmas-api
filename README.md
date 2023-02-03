@@ -15,7 +15,7 @@ L'url de l'API est https://pharmas-api.herokuapp.com/
 
 * La liste des pharmacies avec un filtre par ville possible GET `'/pharmacies/:city'`
 
- Pour exemple le JSON de toutes les pharmacies de :London
+ Pour exemple le JSON de toutes les pharmacies de `:London`
 ```json
 ["Flatley - Pfeffer","Johns, Ziemann and Marquardt","Crist LLC","DuBuque - Ankunding","Goyette, Kihn and Toy"]
 ```
