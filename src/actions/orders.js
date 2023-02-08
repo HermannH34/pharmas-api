@@ -7,7 +7,7 @@ export const order = (req, res) => {
   const query = req.query;
   const productQuery = query.product;
   const laboratoryQuery = query.laboratory;
-  const title = req.query.title;
+  const title = query.title;
   // trouver l'id du labo
   const laboratoryId = db.prepare('SELECT id FROM laboratories WHERE name = ?').all(
     laboratoryQuery
@@ -16,14 +16,17 @@ export const order = (req, res) => {
   let product = db.prepare('SELECT * FROM products WHERE name = ? AND laboratoryid = ?').all(
     productQuery, laboratoryId
   )
-  // product = product[Math.floor(Math.random() * product.length)].id
+
   product = hasard(product)
-  product = product.id
   // insérer ce produit dans orders
   db.prepare('INSERT INTO orders (title, productid, pharmacyid) VALUES (?, ?, ?)').run(
     title,
-    product,
+    product.id,
     pharmaId
+  )
+  // indiquer qu ele product n'est plus en stock
+  db.prepare('UPDATE products SET instock = false WHERE name = ? AND laboratoryid = ? LIMIT 1').run(
+    product.name, laboratoryId
   )
 
   res.send()
