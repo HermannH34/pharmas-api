@@ -24,7 +24,7 @@ export const order = (req, res) => {
     product.id,
     pharmaId
   )
-  // indiquer qu ele product n'est plus en stock
+  // indiquer qu le product n'est plus en stock
   db.prepare('UPDATE products SET instock = false WHERE name = ? AND laboratoryid = ? LIMIT 1').run(
     product.name, laboratoryId
   )

@@ -10,7 +10,7 @@ export const createProduct = (req, res) => {
   const product = req.query.product;
   const labId = req.params.id;
 
-  db.prepare('INSERT INTO products (name, laboratoryid) VALUES (?, ?)').run(
+  db.prepare('INSERT INTO products (name, instock, laboratoryid) VALUES (?, true, ?)').run(
     product, labId
   )
   // dupliquer la création d'un produit dans la table stocks
