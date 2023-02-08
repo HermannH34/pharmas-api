@@ -2,6 +2,7 @@ import { db } from './database.js'
 import { faker } from '@faker-js/faker';
 import { hasard } from './hasard.js'
 
+db.prepare("DELETE FROM stocks").run()
 db.prepare("DELETE FROM products").run()
 db.prepare("DELETE FROM pharmacies").run()
 db.prepare("DELETE FROM laboratories").run()
@@ -29,7 +30,7 @@ for (const lab of labs) {
 
 console.log("Laboratories created !")
 
-// create products
+// create products & stocks
 const products = ["Doliprane", "Smecta", "Efferalgan", "Xanax", "Lexomil", "Dafalgan"]
 
 for (let i = 0; i < 50; i++) {
@@ -39,9 +40,15 @@ for (let i = 0; i < 50; i++) {
 
   const labId = db.prepare("SELECT id FROM laboratories WHERE id = ?").get(hasard(rangeOfId))
 
-  // créer un procuct et lui affecter un labo
+  let hasardChoice = hasard(products);
+  // créer un product et lui affecter un labo
   db.prepare("INSERT INTO products (name, laboratoryid) VALUES (?, ?)").run(
-    hasard(products),
+    hasardChoice,
+    labId.id
+  )
+
+  db.prepare("INSERT INTO stocks (name, laboratoryid) VALUES (?, ?)").run(
+    hasardChoice,
     labId.id
   )
 }
