@@ -1,5 +1,6 @@
 import { db } from './database.js'
 import { faker } from '@faker-js/faker';
+import { hasard } from './hasard.js'
 
 db.prepare("DELETE FROM products").run()
 db.prepare("DELETE FROM pharmacies").run()
@@ -9,9 +10,9 @@ db.prepare("DELETE FROM laboratories").run()
 // create pharmas
 let cities = ["Glasgow", "London", "Manchester", "Plymouth"];
 
-for (const city of cities) {
+for (let i = 0; i < 30; i++) {
   db.prepare("INSERT INTO pharmacies (name, city) VALUES (?, ?)").run(
-    faker.company.name(), city[Math.floor(Math.random() * city.length)]
+    faker.company.name(), hasard(cities)
   )
 }
 
@@ -36,11 +37,11 @@ for (let i = 0; i < 50; i++) {
 
   const rangeOfId = ids.map(id => id.id)
 
-  const labId = db.prepare("SELECT id FROM laboratories WHERE id = ?").get(rangeOfId[Math.floor(Math.random() * rangeOfId.length)])
+  const labId = db.prepare("SELECT id FROM laboratories WHERE id = ?").get(hasard(rangeOfId))
 
   // créer un procuct et lui affecter un labo
   db.prepare("INSERT INTO products (name, laboratoryid) VALUES (?, ?)").run(
-    products[Math.floor(Math.random() * products.length)],
+    hasard(products),
     labId.id
   )
 }
