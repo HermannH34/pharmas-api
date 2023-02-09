@@ -8,7 +8,7 @@ Les laboratoires communiquent une liste de produits, et nous avons également ac
 
 ### Base URL
 
-L'url de l'API est https://pharmas-api.herokuapp.com/
+L'url de l'API est https://pharmas-api.herokuapp.com/laboratories
 
 
 #### Endpoints
