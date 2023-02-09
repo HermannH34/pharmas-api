@@ -16,7 +16,7 @@ app.register(fastifyView, {
 
 // index
 app.get('/', (req, res) => {
-  res.view("templates/index.ejs")
+  res.send({ "status": "everyhing is allright" })
 })
 // afficher tous les labos
 app.get('/laboratories', listLabs)
