@@ -4,7 +4,6 @@ import { hasard } from './hasard.js'
 
 db.prepare("DELETE FROM orders").run()
 db.prepare("DELETE FROM products").run()
-// db.prepare("DELETE FROM stocks").run()
 db.prepare("DELETE FROM pharmacies").run()
 db.prepare("DELETE FROM laboratories").run()
 
@@ -43,15 +42,10 @@ for (let i = 0; i < 50; i++) {
 
   let hasardChoice = hasard(products);
   // créer un product et lui affecter un labo
-  db.prepare("INSERT INTO products (name, instock, laboratoryid) VALUES (?, true, ?)").run(
+  db.prepare("INSERT INTO products (name, laboratoryid) VALUES (?, ?)").run(
     hasardChoice,
     labId.id
   )
-
-  // db.prepare("INSERT INTO stocks (name, laboratoryid) VALUES (?, ?)").run(
-  //   hasardChoice,
-  //   labId.id
-  // )
 }
 
 console.log("Products created !")
