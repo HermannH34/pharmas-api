@@ -27,6 +27,6 @@ app.get('/pharmacies', listPharms)
 // afficher les pharmas par ville
 app.get('/pharmacies/:city', listByCity)
 // une pharma peut passer commande auprès d'un labo
-app.put('/pharmacy/:id', order)
+app.put('/pharmacy/:id/order', order)
 
 export default app
