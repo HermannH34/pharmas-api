@@ -35,7 +35,7 @@ const products = ["Doliprane", "Smecta", "Efferalgan", "Xanax", "Lexomil", "Dafa
 
 for (let i = 0; i < products.length; i++) {
   db.prepare("INSERT INTO products (name, laboratoryid) VALUES (?, (SELECT id FROM laboratories ORDER BY RANDOM() LIMIT 1))").run(
-    products[i]
+    hasard(products)
   )
 }
 
