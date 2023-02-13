@@ -7,10 +7,10 @@ export const listLabs = (req, res) => {
 }
 
 export const createProduct = (req, res) => {
-  const product = req.query.product;
+  const product = JSON.parse(req.body).product;
   const labId = req.params.id;
 
-  db.prepare('INSERT INTO products (name, instock, laboratoryid) VALUES (?, true, ?)').run(
+  db.prepare('INSERT INTO products (name, laboratoryid) VALUES (?, ?)').run(
     product, labId
   )
 
