@@ -8,7 +8,7 @@ export const order = (req, res) => {
   const productQuery = query.product;
   const laboratoryQuery = query.laboratory;
   // trouver le produit commandé par la pharma
-  let product = db.prepare('SELECT * FROM products WHERE name = ? AND laboratoryid = (SELECT id FROM laboratories WHERE name = ?)').all(
+  let product = db.prepare('SELECT * FROM products WHERE name = ? AND laboratoryid = (SELECT id FROM laboratories WHERE name = ?) ORDER BY RAND() LIMIT 1').all(
     productQuery, laboratoryQuery
   )
   product = hasard(product)

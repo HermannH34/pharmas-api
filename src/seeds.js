@@ -33,18 +33,9 @@ console.log("Laboratories created !")
 // create products & stocks
 const products = ["Doliprane", "Smecta", "Efferalgan", "Xanax", "Lexomil", "Dafalgan"]
 
-for (let i = 0; i < 50; i++) {
-  const ids = db.prepare("SELECT id FROM laboratories").all()
-
-  const rangeOfId = ids.map(id => id.id)
-
-  const labId = db.prepare("SELECT id FROM laboratories WHERE id = ?").get(hasard(rangeOfId))
-
-  let hasardChoice = hasard(products);
-  // créer un product et lui affecter un labo
-  db.prepare("INSERT INTO products (name, laboratoryid) VALUES (?, ?)").run(
-    hasardChoice,
-    labId.id
+for (let i = 0; i < products.length; i++) {
+  db.prepare("INSERT INTO products (name, laboratoryid) VALUES (?, (SELECT id FROM laboratories ORDER BY RANDOM() LIMIT 1))").run(
+    products[i]
   )
 }
 
