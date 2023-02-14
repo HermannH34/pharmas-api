@@ -25,13 +25,13 @@ const getLabsOpts = {
 app.get('/', (req, res) => {
   res.send({ "status": "everyhing is allright" })
 })
-// afficher tous les labos depuis
-app.get('/api/v1/pharmacy/:id/laboratories', getLabsOpts, listLabs)
+// afficher tous les labos
+app.get('/pharmacy/:id/laboratory', getLabsOpts, listLabs)
 // un labo peut créer un produit
-app.post('/api/v1/laboratory/:id', createProduct)
+app.post('/laboratory/:id', createProduct)
 // afficher les pharmas par ville
-app.get('/api/v1/laboratory/:id/pharmacies', listByCity)
+app.get('/laboratory/:id/pharmacy', listByCity)
 // une pharma peut passer commande auprès d'un labo
-app.post('/api/v1/pharmacy/:id/order', order)
+app.post('/pharmacy/:id/order', order)
 
 export default app
