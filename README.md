@@ -1,36 +1,40 @@
-## Pharmas API
+## V1 d'une API REST pour une application web/mobile simplifiant la vie des Pharmacies et laboratoires
 
-API pour une application web simplifiant la vie des Pharmacies et laboratoires dans la prise de commande de médicaments auprès des laboratoires et tout ce qui est lié à la vente.
+### Contexte du projet
 
-Les pharmacies sont localisées par ville et elles sont souvent plusieurs par ville.
+Le but de l'application est de simplifier la vie des pharmaciens et laboratoires sur tout ce qui est administratif dans la vente de médicaments des pharmacies et la prise de commande auprès des laboratoires.
+
+L'application a donc comme clients des pharmacies et des laboratoires.
 
 Les laboratoires communiquent une liste de produits, et nous avons également accès aux commandes de leur pharmacies clientes.
 
-### Base URL
+De plus, ces pharmacies sont également clientes de l'application et nous avons donc accès à leur ventes lignes par lignes.
 
-L'url de l'API est https://pharmas-api.herokuapp.com/
-
+Les pharmacies sont localisées par ville et elles sont souvent plusieurs par ville.
 
 #### Endpoints
 
-* La liste des pharmacies  `GET '/pharmacies'`
+* La liste des pharmacies.
 
-* La liste des laboratoires  `GET '/laboratories'`
+* La liste des laboratoires avec un filtre par ville possible.
 
-* Un laboratoire peut produire un médicament  `PUT '/laboratory/:id'`
-`params:
-:product
-`
+* 2 endpoints de création, une pour une prise de commande (entre une pharmacie et un laboratoire) et une pour une vente (de la pharmacie).
 
-* La liste des pharmacies avec un filtre par ville possible GET `'/pharmacies/:city'`
+---------------
+### :hammer_and_wrench: Installation
 
- Pour exemple, le fichier JSON de toutes les pharmacies de `:London`
-```json
-["Flatley - Pfeffer","Johns, Ziemann and Marquardt","Crist LLC","DuBuque - Ankunding","Goyette, Kihn and Toy"]
-```
-* Une pharmacie peut commander un médicament auprès d'un laboratoire  `PUT '/pharmacy/:id'`
-`params:
-:title
-:product
-:laboratory
-`
+* Cloner ce projet depuis GitHub.
+* Ouvrir le terminal sur ce dossier et exécuter npm install pour installer les dépendances.
+* Démarrer ` npm run dev ` pour avoir accès au serveur de développement.
+* Rendez-vous sur  `http://localhost:8000 `.
+
+---------------
+### :man_technologist: Utilisé dans ce projet
+
+| Technologies | et outils |
+|:--------------|:-------------:|
+| Langage: JavaScript | Git/GitHub |
+| Serveur: Node.js | Visual Studio Code |
+| Framework: Fastify | xXx |
+| DB: SQLite | xXx |
+| Tests: Tap | xXx |
