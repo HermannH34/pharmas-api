@@ -1,0 +1,5 @@
+### GET ALL LABS
+GET http://localhost:8000/api/v1/pharmacy/1135/laboratories HTTP/1.1
+
+### GET ALL PHARMAS
+GET http://localhost:8000/api/v1/laboratory/142/pharmacies HTTP/1.1
