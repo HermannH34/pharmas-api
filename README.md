@@ -24,7 +24,7 @@ Les pharmacies sont localisées par ville et elles sont souvent plusieurs par vi
 ### :hammer_and_wrench: Installation
 
 * Cloner ce projet depuis GitHub.
-* Ouvrir le terminal sur ce dossier et exécuter npm install pour installer les dépendances.
+* Ouvrir le terminal sur ce dossier et exécuter ` npm install ` pour installer les dépendances.
 * Démarrer ` npm run dev ` pour avoir accès au serveur de développement.
 * Rendez-vous sur  `http://localhost:8000 `.
 
