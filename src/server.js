@@ -4,7 +4,7 @@ const host = '0.0.0.0';
 
 const start = async () => {
   try {
-    await app.listen(process.env.PORT || 5000, host)
+    await app.listen(process.env.PORT || 8000, host)
   } catch (err) {
     console.error(err)
     process.exit(1)
