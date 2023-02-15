@@ -25,6 +25,7 @@ Les pharmacies sont localisées par ville et elles sont souvent plusieurs par vi
 
 * Cloner ce projet depuis GitHub.
 * Ouvrir le terminal sur ce dossier et exécuter ` npm install ` pour installer les dépendances.
+* Exécuter ` src/seeds.js ` pour remplir la database de fausses données.
 * Démarrer ` npm run dev ` pour avoir accès au serveur de développement.
 * Rendez-vous sur  `http://localhost:8000 `.
 
@@ -35,6 +36,6 @@ Les pharmacies sont localisées par ville et elles sont souvent plusieurs par vi
 |:--------------|:-------------:|
 | Langage: JavaScript | Git/GitHub |
 | Serveur: Node.js | Visual Studio Code |
-| Framework: Fastify | xXx |
+| Framework: Fastify | Postman |
 | DB: SQLite | xXx |
 | Tests: Tap | xXx |

@@ -1,34 +1,18 @@
 import fastify from "fastify"
+import fastifySwagger from '@fastify/swagger'
 import { listByCity } from './actions/pharmacies.js'
-import { createProduct, listLabs } from './actions/laboratories.js'
+import { listLabs } from './actions/laboratories.js'
 import { order } from './actions/orders.js'
 
 const app = fastify()
-// Options
-const getLabsOpts = {
-  schema: {
-    response: {
-      200: {
-        type: 'array',
-        items: {
-          type: 'object',
-          properties: {
-            id: { type: 'string' },
-            name: { type: 'string' },
-          },
-        },
-      },
-    },
-  }
-}
+
+
 // index
 app.get('/', (req, res) => {
   res.send({ "status": "everyhing is allright" })
 })
 // afficher tous les labos
-app.get('/pharmacy/:id/laboratory', getLabsOpts, listLabs)
-// un labo peut créer un produit
-app.post('/laboratory/:id', createProduct)
+app.get('/pharmacy/:id/laboratory', listLabs)
 // afficher les pharmas par ville
 app.get('/laboratory/:id/pharmacy', listByCity)
 // une pharma peut passer commande auprès d'un labo
