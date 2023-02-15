@@ -5,14 +5,3 @@ export const listLabs = (req, res) => {
 
   res.send(labs)
 }
-
-export const createProduct = (req, res) => {
-  const product = JSON.parse(req.body).product;
-  const labId = req.params.id;
-
-  db.prepare('INSERT INTO products (name, laboratoryid) VALUES (?, ?)').run(
-    product, labId
-  )
-
-  res.send()
-}
