@@ -1,5 +1,4 @@
 import fastify from "fastify"
-import fastifySwagger from '@fastify/swagger'
 import { listByCity } from './actions/pharmacies.js'
 import { listLabs } from './actions/laboratories.js'
 import { order } from './actions/orders.js'
@@ -17,5 +16,6 @@ app.get('/pharmacy/:id/laboratory', listLabs)
 app.get('/laboratory/:id/pharmacy', listByCity)
 // une pharma peut passer commande auprès d'un labo
 app.post('/pharmacy/:id/order', order)
+
 
 export default app
