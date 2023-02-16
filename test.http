@@ -10,6 +10,6 @@ Content-Type: application/json
 
 {
   "product": "Smecta",
-  "quantity": 7,
-  "laboratory": "J&J"
+  "quantity": "7",
+  "laboratory": "Servier"
 }
