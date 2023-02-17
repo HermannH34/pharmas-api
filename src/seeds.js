@@ -25,7 +25,7 @@ console.log("Pharmacies created !")
 const labs = [["Servier", "servier-lab@gmail.com"], ["J&J", "j&j@gmail.com"], ["Pfizer", "pfizer-lab@gmail.com"]]
 
 for (const lab of labs) {
-  db.prepare("INSERT INTO laboratories (name, email, password) VALUES (?, ?, 'azerty')").run(
+  db.prepare("INSERT INTO laboratories (name, email, password, labo, pharma) VALUES (?, ?, 'azerty', true, false)").run(
     lab[0], lab[1]
   )
 }
