@@ -2,9 +2,10 @@ import express from "express"
 import { listByCity } from './actions/pharmacies.js'
 import { listLabs } from './actions/laboratories.js'
 import { order } from './actions/orders.js'
+import { login } from './actions/login.js'
 import jsonwebtoken from 'jsonwebtoken'
 import * as dotenv from 'dotenv'
-import { db } from "./database.js"
+
 dotenv.config()
 
 const jwt = jsonwebtoken
@@ -13,44 +14,12 @@ const app = express()
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// user pour l'authotification
-let user
-// Générer un Token pour s'authentifier
-function generateAccesToken(user) {
-  console.log('x')
-  return jwt.sign(user, process.env.ACCESS_SECRET_TOKEN, { expiresIn: '1800s' })
-}
-
-
 // index
 app.get('/', (req, res) => {
   res.send({ "status": "everyhing is allright" })
 })
-// logins
-app.post('/login', (req, res) => {
-  const { email, password } = req.body
-  let labQuery = db.prepare('SELECT * FROM laboratories WHERE email = ? AND password = ?').all(
-    email, password
-  )[0]
-
-  let pharmaQuery = db.prepare('SELECT * FROM pharmacies WHERE email = ? AND password = ?').all(
-    email, password
-  )[0]
-
-  if (pharmaQuery !== undefined) {
-    user = pharmaQuery
-  } else if (labQuery !== undefined) {
-    user = labQuery
-  } else {
-    return res.status(401).send('invalid credentials')
-  }
-
-  const accessToken = generateAccesToken(user)
-  console.log(labQuery)
-  res.send({ accessToken })
-})
-
-
+// login
+app.post('/login', login)
 // afficher tous les labos
 app.get('/pharmacy/:id/laboratory', authenticateToken, listLabs)
 // afficher les pharmas par ville

@@ -27,7 +27,7 @@ Les pharmacies sont localisées par ville et elles sont souvent plusieurs par vi
 | GET /pharmacy/:id/laboratory | |  |Liste des laboratoires |
 | GET /laboratory/:id/pharmacy | | | Liste des pharmacies |
 | POST /laboratory/:id/pharmacy | `:city` | | Liste des pharmacies par ville |
-| /pharmacy/:id/order |  | `:product`  `:quantity`  `:laboratory` | commande d'un médicament par une pharmaci auprès d'un labo, ex: `{"DataReceived": " 7 Smecta from Servier"}`  |
+| POST /pharmacy/:id/order |  | `:product`  `:quantity`  `:laboratory` | commande d'un médicament par une pharmaci auprès d'un labo, ex: `{"DataReceived": " 7 Smecta from Servier"}`  |
 
 
 ---------------
