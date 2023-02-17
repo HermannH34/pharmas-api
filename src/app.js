@@ -4,6 +4,7 @@ import { listLabs } from './actions/laboratories.js'
 import { order } from './actions/orders.js'
 import jsonwebtoken from 'jsonwebtoken'
 import * as dotenv from 'dotenv'
+import { db } from "./database.js"
 dotenv.config()
 
 const jwt = jsonwebtoken
@@ -13,11 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-const user = {
-  id: 42,
-  name: "Servier",
-  email: "servier-lab@gmail.com"
-}
+let user
 
 // Générer un Token pour s'authentifier
 function generateAccesToken(user) {
@@ -26,13 +23,18 @@ function generateAccesToken(user) {
 
 
 // index
-app.get('/', (req, res) => {
-  // res.send({ "status": "everyhing is allright" })
-  return request.user
+app.get('/', authenticateToken, (req, res) => {
+  res.send({ "status": "everyhing is allright" })
 })
 // login
 app.post('/login', (req, res) => {
-  if (req.body.email !== user.email || req.body.password !== 'azerty') {
+  const { email, password } = req.body
+
+  user = db.prepare('SELECT * FROM laboratories WHERE email = ? AND password = ?').all(
+    email, password
+  )[0]
+
+  if (email !== user.email || password !== user.password) {
     return res.status(401).send('invalid credentials');
   }
 
@@ -46,12 +48,20 @@ app.get('/laboratory/:id/pharmacy', listByCity)
 // une pharma peut passer commande auprès d'un labo
 app.post('/pharmacy/:id/order', order)
 
-// app.addHook("onRequest", async (req, res) => {
-//   try {
-//     await req.generateAccesToken(user)
-//   } catch (err) {
-//     res.send(err)
-//   }
-// })
+
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (!token) return res.sendStatus(401);
+
+  jwt.verify(token, process.env.ACCESS_SECRET_TOKEN, (err, user) => {
+
+    if (err) return res.sendStatus(401);
+
+    req.user = user;
+    next();
+  });
+}
 
 export default app
