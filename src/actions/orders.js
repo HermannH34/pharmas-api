@@ -7,13 +7,13 @@ export const order = (req, res) => {
   // Cas d'erreurs
 
   if (!quantity || !product || !laboratory) {
-    res.status(400).send({ error: 'details about order are required' })
+    res.status(400).json({ error: 'details about order are required' })
   }
 
   if (typeof quantity !== 'number') {
     quantity = parseFloat(quantity);
     if (isNaN(quantity)) {
-      return res.status(400).send({ error: 'quantity must be a number' });
+      return res.status(400).json({ error: 'quantity must be a number' });
     }
   }
 
@@ -27,6 +27,6 @@ export const order = (req, res) => {
     laboratory,
     pharmaId
   )
-  res.code(201)
-  res.send({ DataReceived: ` ${quantity} ${product} from ${laboratory}` });
+  res.status(201)
+  res.json({ DataReceived: ` ${quantity} ${product} from ${laboratory}` });
 }
