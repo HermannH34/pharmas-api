@@ -1,4 +1,4 @@
-import fastify from "fastify"
+import express from "express"
 import { listByCity } from './actions/pharmacies.js'
 import { listLabs } from './actions/laboratories.js'
 import { order } from './actions/orders.js'
@@ -8,7 +8,9 @@ dotenv.config()
 
 const jwt = jsonwebtoken
 
-const app = fastify()
+const app = express()
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 
 const user = {
