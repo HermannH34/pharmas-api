@@ -13,42 +13,52 @@ const app = express()
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
+// user pour l'authotification
 let user
-
 // Générer un Token pour s'authentifier
 function generateAccesToken(user) {
+  console.log('x')
   return jwt.sign(user, process.env.ACCESS_SECRET_TOKEN, { expiresIn: '1800s' })
 }
 
 
 // index
-app.get('/', authenticateToken, (req, res) => {
+app.get('/', (req, res) => {
   res.send({ "status": "everyhing is allright" })
 })
-// login
+// logins
 app.post('/login', (req, res) => {
   const { email, password } = req.body
-
-  user = db.prepare('SELECT * FROM laboratories WHERE email = ? AND password = ?').all(
+  let labQuery = db.prepare('SELECT * FROM laboratories WHERE email = ? AND password = ?').all(
     email, password
   )[0]
 
-  if (email !== user.email || password !== user.password) {
-    return res.status(401).send('invalid credentials');
+  let pharmaQuery = db.prepare('SELECT * FROM pharmacies WHERE email = ? AND password = ?').all(
+    email, password
+  )[0]
+
+  if (pharmaQuery !== undefined) {
+    user = pharmaQuery
+  } else if (labQuery !== undefined) {
+    user = labQuery
+  } else {
+    return res.status(401).send('invalid credentials')
   }
 
   const accessToken = generateAccesToken(user)
+  console.log(labQuery)
   res.send({ accessToken })
 })
+
+
 // afficher tous les labos
-app.get('/pharmacy/:id/laboratory', listLabs)
+app.get('/pharmacy/:id/laboratory', authenticateToken, listLabs)
 // afficher les pharmas par ville
-app.get('/laboratory/:id/pharmacy', listByCity)
+app.get('/laboratory/:id/pharmacy', authenticateToken, listByCity)
 // une pharma peut passer commande auprès d'un labo
-app.post('/pharmacy/:id/order', order)
+app.post('/pharmacy/:id/order', authenticateToken, order)
 
-
+// Middleware pour gérer les routes nécessitant une authentification
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];

@@ -1,11 +1,11 @@
 ### GET ALL LABORATORIES
-GET http://localhost:8000/pharmacy/1135/laboratory HTTP/1.1
+GET http://localhost:8000/pharmacy/1195/laboratory HTTP/1.1
 
 ### GET ALL PHARMACIES BY CITY
-GET http://localhost:8000/laboratory/145/pharmacy?city=London HTTP/1.1
+GET http://localhost:8000/laboratory/148/pharmacy?city=London HTTP/1.1
 
 ### CREATE AN ORDER
-POST http://localhost:8000/pharmacy/1155/order HTTP/1.1
+POST http://localhost:8000/pharmacy/1195/order HTTP/1.1
 Content-Type: application/json
 
 {
@@ -19,6 +19,6 @@ POST http://localhost:8000/login HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "servier-lab@gmail.com",
+  "email": "pharma-odyssee@gmail.com",
   "password": "azerty"
 }

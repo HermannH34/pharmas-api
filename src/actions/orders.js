@@ -1,6 +1,9 @@
 import { db } from '../database.js'
 
 export const order = (req, res) => {
+  // vérifier si user est une pharma
+  if (req.user.labo) return res.status(401).send('invalid credentials')
+
   const pharmaId = req.params.id;
   let { product, quantity, laboratory } = req.body;
 
