@@ -36,5 +36,5 @@ Les pharmacies sont localisées par ville et elles sont souvent plusieurs par vi
 |:--------------|:-------------:|
 | Langage: JavaScript | Git/GitHub |
 | Serveur: Node.js | Visual Studio Code |
-| Framework: Fastify | Postman |
+| Framework: Express | Postman |
 | DB: SQLite | xXx |
