@@ -13,3 +13,12 @@ Content-Type: application/json
   "quantity": "7",
   "laboratory": "Servier"
 }
+
+### AUTHENTIFICATION
+POST http://localhost:8000/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "servier-lab@gmail.com",
+  "password": "azerty"
+}
