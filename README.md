@@ -20,6 +20,16 @@ Les pharmacies sont localisées par ville et elles sont souvent plusieurs par vi
 
 * 2 endpoints de création, une pour une prise de commande (entre une pharmacie et un laboratoire) et une pour une vente (de la pharmacie).
 
+### API Documentation
+
+| Route | query | body | Description |
+|:--------------|:-------------|:--------------|:-------------:|
+| GET /pharmacy/:id/laboratory | |  |Liste des laboratoires |
+| GET /laboratory/:id/pharmacy | | | Liste des pharmacies |
+| POST /laboratory/:id/pharmacy | `:city` | | Liste des pharmacies par ville |
+| /pharmacy/:id/order |  | `:product`  `:quantity`  `:laboratory` | commande d'un médicament par une pharmaci auprès d'un labo, ex: `{"DataReceived": " 7 Smecta from Servier"}`  |
+
+
 ---------------
 ### :hammer_and_wrench: Installation
 
