@@ -38,4 +38,3 @@ Les pharmacies sont localisées par ville et elles sont souvent plusieurs par vi
 | Serveur: Node.js | Visual Studio Code |
 | Framework: Fastify | Postman |
 | DB: SQLite | xXx |
-| Tests: Tap | xXx |
