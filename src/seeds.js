@@ -22,11 +22,11 @@ for (let i = 0; i < 30; i++) {
 console.log("Pharmacies created !")
 
 // create labo
-const labs = ["Servier", "J&J", "Pfizer"]
+const labs = [["Servier", "servier-lab@gmail.com"], ["J&J", "j&j@gmail.com"], ["Pfizer", "pfizer-lab@gmail.com"]]
 
 for (const lab of labs) {
-  db.prepare("INSERT INTO laboratories (name) VALUES (?)").run(
-    lab
+  db.prepare("INSERT INTO laboratories (name, email, password) VALUES (?, ?, 'azerty')").run(
+    lab[0], lab[1]
   )
 }
 
