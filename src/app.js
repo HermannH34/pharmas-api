@@ -14,18 +14,14 @@ const app = express()
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// index
-app.get('/', (req, res) => {
-  res.send({ "status": "everyhing is allright" })
-})
 // login
-app.post('/login', login)
+app.post('/api/login', login)
 // afficher tous les labos
-app.get('/pharmacy/:id/laboratory', authenticateToken, listLabs)
+app.get('/api/laboratories', authenticateToken, listLabs)
 // afficher les pharmas par ville
-app.get('/laboratory/:id/pharmacy', authenticateToken, listByCity)
+app.get('/api/pharmacies', authenticateToken, listByCity)
 // une pharma peut passer commande auprès d'un labo
-app.post('/pharmacy/:id/order', authenticateToken, order)
+app.post('/api/order', authenticateToken, order)
 
 // Middleware pour gérer les routes nécessitant une authentification
 function authenticateToken(req, res, next) {

@@ -22,17 +22,17 @@ for (let i = 0; i < 30; i++) {
 console.log("Pharmacies created !")
 
 // create labo
-const labs = [["Servier", "servier-lab@gmail.com"], ["J&J", "j&j@gmail.com"], ["Pfizer", "pfizer-lab@gmail.com"]]
+const labs = ["Servier", "J&J", "Pfizer"]
 
 for (const lab of labs) {
-  db.prepare("INSERT INTO laboratories (name, email, password, labo, pharma) VALUES (?, ?, 'azerty', true, false)").run(
-    lab[0], lab[1]
+  db.prepare("INSERT INTO laboratories (name) VALUES (?)").run(
+    lab
   )
 }
 
 console.log("Laboratories created !")
 
-// create products & stocks
+// create products
 const products = ["Doliprane", "Smecta", "Efferalgan", "Xanax", "Lexomil", "Dafalgan"]
 
 for (let i = 0; i < 50; i++) {
