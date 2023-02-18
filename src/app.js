@@ -4,6 +4,7 @@ import { listLabs } from './actions/laboratories.js'
 import { order } from './actions/orders.js'
 import { login } from './actions/login.js'
 import { register } from './actions/register.js'
+import { createPharma } from './actions/createpharma.js'
 import jsonwebtoken from 'jsonwebtoken'
 import * as dotenv from 'dotenv'
 
@@ -24,7 +25,7 @@ app.get('/api/laboratories', authenticateToken, listLabs)
 // afficher les pharmas par ville
 app.get('/api/pharmacies', authenticateToken, listByCity)
 // un user peut créer une pharma
-
+app.post('/api/pharmacy/new', authenticateToken, createPharma)
 // une pharma peut passer commande auprès d'un labo
 app.post('/api/order', authenticateToken, order)
 

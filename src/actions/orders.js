@@ -2,7 +2,6 @@ import { db } from '../database.js'
 
 export const order = (req, res) => {
   // vérifier si user est une pharma
-  console.log(req.user)
   if (req.user.labo) return res.status(401).send('invalid credentials')
 
   const pharmaId = req.params.id;
