@@ -3,6 +3,7 @@ import { listByCity } from './actions/pharmacies.js'
 import { listLabs } from './actions/laboratories.js'
 import { order } from './actions/orders.js'
 import { login } from './actions/login.js'
+import { register } from './actions/register.js'
 import jsonwebtoken from 'jsonwebtoken'
 import * as dotenv from 'dotenv'
 
@@ -14,12 +15,16 @@ const app = express()
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// register
+app.post('/api/register', register)
 // login
 app.post('/api/login', login)
 // afficher tous les labos
 app.get('/api/laboratories', authenticateToken, listLabs)
 // afficher les pharmas par ville
 app.get('/api/pharmacies', authenticateToken, listByCity)
+// un user peut créer une pharma
+
 // une pharma peut passer commande auprès d'un labo
 app.post('/api/order', authenticateToken, order)
 

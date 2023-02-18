@@ -14,6 +14,17 @@ Content-Type: application/json
   "laboratory": "Servier"
 }
 
+### REGISTER
+POST http://localhost:8000/api/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Pharmacie Odysseum",
+  "email": "pharma-odyssee@gmail.com",
+  "password": "azerty",
+  "ispharmacy": "true"
+}
+
 ### AUTHENTIFICATION
 POST http://localhost:8000/api/login HTTP/1.1
 Content-Type: application/json
