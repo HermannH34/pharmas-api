@@ -4,7 +4,7 @@ import jsonwebtoken from 'jsonwebtoken'
 
 const jwt = jsonwebtoken
 dotenv.config()
-// user pour l'authotification
+// user pour l'authentification
 let user
 // Générer un Token pour s'authentifier
 function generateAccesToken(user) {
@@ -13,22 +13,11 @@ function generateAccesToken(user) {
 dotenv.config()
 
 export const login = (req, res) => {
-  const { email, password } = req.body
-  let labQuery = db.prepare('SELECT * FROM laboratories WHERE email = ? AND password = ?').all(
-    email, password
+  user = db.prepare('SELECT * FROM users WHERE email = ? AND password = ?').all(
+    req.body.email, req.body.password
   )[0]
 
-  let pharmaQuery = db.prepare('SELECT * FROM pharmacies WHERE email = ? AND password = ?').all(
-    email, password
-  )[0]
-
-  if (pharmaQuery !== undefined) {
-    user = pharmaQuery
-  } else if (labQuery !== undefined) {
-    user = labQuery
-  } else {
-    return res.status(401).send('invalid credentials')
-  }
+  user == undefined && res.status(401).send('invalid credentials')
 
   const accessToken = generateAccesToken(user)
 
