@@ -1,7 +1,7 @@
 import { db } from '../database.js'
 
 export const register = (req, res) => {
-  const { name, email, password, ispharmacy } = req.body
+  let { name, email, password, ispharmacy } = req.body
 
   if (db.prepare('SELECT * FROM users WHERE email = ?').all(email).length == 1) return res.status(401).send('user already exist')
 
