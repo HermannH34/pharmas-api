@@ -34,5 +34,15 @@ Content-Type: application/json
   "password": "azerty"
 }
 
+# {
+#   "email": "pharma-odyssee@gmail.com",
+#   "password": "azerty"
+# }
+
 ### CREATE A PHARMACY
 POST http://localhost:8000/api/pharmacy/new HTTP/1.1
+
+{
+  "email": "Odyssee",
+  "password": "Marseille"
+}
