@@ -18,9 +18,16 @@ Content-Type: application/json
 POST http://localhost:8000/api/register HTTP/1.1
 Content-Type: application/json
 
+# {
+#   "name": "Servier",
+#   "email": "servier-lab@gmail.com",
+#   "password": "azerty",
+#   "ispharmacy": "false"
+# }
+
 {
-  "name": "Pharmacy Comédie",
-  "email": "pharma-comedie@gmail.com",
+  "name": "Pharmacie Odyssee",
+  "email": "pharma-odyssee@gmail.com",
   "password": "azerty",
   "ispharmacy": "true"
 }
@@ -29,12 +36,12 @@ Content-Type: application/json
 POST http://localhost:8000/api/login HTTP/1.1
 Content-Type: application/json
 
-# {
-#   "email": "servier-lab@gmail.com",
-#   "password": "azerty"
-# }
-
 {
-  "email": "pharma-odyssee@gmail.com",
+  "email": "servier-lab@gmail.com",
   "password": "azerty"
 }
+
+# {
+#   "email": "pharma-odyssee@gmail.com",
+#   "password": "azerty"
+# }
