@@ -2,9 +2,13 @@ import { db } from '../database.js'
 
 export const order = (req, res) => {
   // vérifier si user est une pharma
-  if (req.user.labo) return res.status(401).send('invalid credentials')
+  if (req.user.ispharmacy !== "true") return res.status(401).send('user must be a pharmacian')
 
-  const pharmaId = req.params.id;
+  const pharmaId = db.prepare('SELECT id FROM pharmacies WHERE userid = ?').all(
+    req.user.id
+  )[0].id
+
+
   let { product, quantity, laboratory } = req.body;
 
   // Cas d'erreurs
@@ -16,7 +20,7 @@ export const order = (req, res) => {
   if (typeof quantity !== 'number') {
     quantity = parseFloat(quantity);
     if (isNaN(quantity)) {
-      return res.status(400).json({ error: 'quantity must be a number' });
+      return res.status(400).send('quantity must be a number');
     }
   }
 
@@ -31,5 +35,5 @@ export const order = (req, res) => {
     pharmaId
   )
   res.status(201)
-  res.json({ DataReceived: ` ${quantity} ${product} from ${laboratory}` });
+  res.send(`DataReceived: ${quantity} ${product} from ${laboratory}`);
 }
