@@ -2,6 +2,7 @@ import express from "express"
 import { listByCity } from './actions/pharmacies.js'
 import { listLabs } from './actions/laboratories.js'
 import { order } from './actions/orders.js'
+import { sale } from './actions/sales.js'
 import { login } from './actions/login.js'
 import { register } from './actions/register.js'
 import { createPharma } from './actions/createpharma.js'
@@ -30,6 +31,8 @@ app.post('/api/pharmacy/new', authenticateToken, createPharma)
 app.post('/api/laboratory/new', authenticateToken, createLab)
 // une pharma peut passer commande auprès d'un labo
 app.post('/api/order', authenticateToken, order)
+// une pharma peut passer commande auprès d'un labo
+app.post('/api/sale', authenticateToken, sale)
 
 // Middleware pour gérer les routes nécessitant une authentification
 function authenticateToken(req, res, next) {

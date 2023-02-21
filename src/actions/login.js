@@ -15,7 +15,6 @@ dotenv.config()
 
 export const login = (req, res) => {
   const { email, password } = req.body
-  console.log(email)
 
   !email && !password && res.status(401).send('missing informations in the body')
 
