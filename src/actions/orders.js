@@ -13,9 +13,7 @@ export const order = (req, res) => {
 
   // Cas d'erreurs
 
-  if (!quantity || !product || !laboratory) {
-    res.status(400).json({ error: 'details about order are required' })
-  }
+  if (!quantity || !product || !laboratory) return res.status(400).json({ error: 'details about order are required' })
 
   if (typeof quantity !== 'number') {
     quantity = parseFloat(quantity);
@@ -35,5 +33,5 @@ export const order = (req, res) => {
     pharmaId
   )
   res.status(201)
-  res.send(`DataReceived: ${quantity} ${product} from ${laboratory}`);
+  res.json(`DataReceived: ${quantity} ${product} from ${laboratory}`)
 }
