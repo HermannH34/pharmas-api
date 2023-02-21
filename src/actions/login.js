@@ -9,7 +9,7 @@ dotenv.config()
 let user
 // Générer un Token pour s'authentifier
 function generateAccesToken(user) {
-  return jwt.sign(user, process.env.ACCESS_SECRET_TOKEN, { expiresIn: '1800s' })
+  return jwt.sign(user, process.env.ACCESS_SECRET_TOKEN, { expiresIn: '7200s' })
 }
 dotenv.config()
 

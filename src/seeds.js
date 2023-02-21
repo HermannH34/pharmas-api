@@ -4,7 +4,7 @@ import { faker } from '@faker-js/faker';
 db.prepare("DELETE FROM users").run()
 // db.prepare("DELETE FROM orders").run()
 // db.prepare("DELETE FROM products").run()
-// db.prepare("DELETE FROM pharmacies").run()
+db.prepare("DELETE FROM pharmacies").run()
 // db.prepare("DELETE FROM laboratories").run()
 
 // function hasard(arr) {
