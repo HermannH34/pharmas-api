@@ -24,10 +24,15 @@ Les pharmacies sont localisées par ville et elles sont souvent plusieurs par vi
 
 | Route | query | body | Description |
 |:--------------|:-------------|:--------------|:-------------:|
-| GET /pharmacy/:id/laboratory | |  |Liste des laboratoires |
-| GET /laboratory/:id/pharmacy | | | Liste des pharmacies |
-| POST /laboratory/:id/pharmacy | `:city` | | Liste des pharmacies par ville |
-| POST /pharmacy/:id/order |  | `:product`  `:quantity`  `:laboratory` | commande d'un médicament par une pharmaci auprès d'un labo, ex: `{"DataReceived": " 7 Smecta from Servier"}`  |
+| POST /api/register |  | `:name`  `:email`  `:password` `:ispharmacy` | Se créer un compte pharmacie ou laboratoire |
+| POST /api/login |  | `:email`  `:password` | Se connecter |
+| POST /api/pharmacy/new |  | `:name`  `:city` | Créer une pharmacie |
+| POST /api/laboratory/new |  | `:name` | Créer un laboratoire |
+| GET /api/laboratory | |  |Liste des laboratoires |
+| GET /api/pharmacy | | | Liste des pharmacies |
+| POST /api/pharmacy | `:city` | | Liste des pharmacies par ville |
+| POST /api/order |  | `:product`  `:quantity`  `:laboratory` | Commande d'un médicament par une pharmacie auprès d'un labo, ex: `{"DataReceived": " 7 Smecta from Servier"}`  |
+| POST /api/sale |  | `:product` | Vente d'un médicament par une pharmacie |
 
 
 ---------------
